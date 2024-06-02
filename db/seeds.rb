@@ -1,9 +1,108 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+Product.create!(
+  title: 'Earthen Bottle',
+  price: 4875,
+  description: 'It has survived not only five centuries, but also the leap into electronic typesetting',
+  stock: 100             
+)
+Product.create!(
+  title: 'Nomad Tumbler',
+  price: 3576,
+  description: 'It has survived not only five centuries, but also the leap into electronic typesetting',
+  stock: 100             
+)
+Product.create!(
+  title: 'Focus Paper Refill',
+  price: 8900,
+  description: 'It has survived not only five centuries, but also the leap into electronic typesetting',
+  stock: 14             
+)
+Product.create!(
+  title: 'Machined Mechanical Pencil',
+  price: 4545,
+  description: 'It has survived not only five centuries, but also the leap into electronic typesetting',
+  stock: 12             
+)
+Product.create!(
+  title: 'Earthen Bottle',
+  price: 4875,
+  description: 'It has survived not only five centuries, but also the leap into electronic typesetting',
+  stock: 100             
+)
+Product.create!(
+  title: 'Nomad Tumbler',
+  price: 3576,
+  description: 'It has survived not only five centuries, but also the leap into electronic typesetting',
+  stock: 100             
+)
+Product.create!(
+  title: 'Focus Paper Refill',
+  price: 8900,
+  description: 'It has survived not only five centuries, but also the leap into electronic typesetting',
+  stock: 14             
+)
+Product.create!(
+  title: 'Machined Mechanical Pencil',
+  price: 4545,
+  description: 'It has survived not only five centuries, but also the leap into electronic typesetting',
+  stock: 12             
+)
+Product.create!(
+  title: 'Focus Paper Refill',
+  price: 8900,
+  description: 'It has survived not only five centuries, but also the leap into electronic typesetting',
+  stock: 14             
+)
+Product.create!(
+  title: 'Machined Mechanical Pencil',
+  price: 4545,
+  description: 'It has survived not only five centuries, but also the leap into electronic typesetting',
+  stock: 12             
+)
+Product.create!(
+  title: 'Focus Paper Refill',
+  price: 8900,
+  description: 'It has survived not only five centuries, but also the leap into electronic typesetting',
+  stock: 14             
+)
+Product.create!(
+  title: 'Machined Mechanical Pencil',
+  price: 4545,
+  description: 'It has survived not only five centuries, but also the leap into electronic typesetting',
+  stock: 12             
+)
+Product.create!(
+  title: 'Focus Paper Refill',
+  price: 8900,
+  description: 'It has survived not only five centuries, but also the leap into electronic typesetting',
+  stock: 14             
+)
+Product.create!(
+  title: 'Machined Mechanical Pencil',
+  price: 4545,
+  description: 'It has survived not only five centuries, but also the leap into electronic typesetting',
+  stock: 12             
+)
+Product.create!(
+  title: 'Focus Paper Refill',
+  price: 8900,
+  description: 'It has survived not only five centuries, but also the leap into electronic typesetting',
+  stock: 14             
+)
+Product.create!(
+  title: 'Machined Mechanical Pencil',
+  price: 4545,
+  description: 'It has survived not only five centuries, but also the leap into electronic typesetting',
+  stock: 12             
+)
+Product.create!(
+  title: 'Focus Paper Refill',
+  price: 8900,
+  description: 'It has survived not only five centuries, but also the leap into electronic typesetting',
+  stock: 14             
+)
+Product.create!(
+  title: 'Machined Mechanical Pencil',
+  price: 4545,
+  description: 'It has survived not only five centuries, but also the leap into electronic typesetting',
+  stock: 12             
+)
