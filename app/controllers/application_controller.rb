@@ -4,27 +4,15 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :current_cart
 
-  # layout :layout_by_resource
-
-  # private
-
-  # def layout_by_resource
-  #   if devise_controller? || params[:controller] == 'password_resets'
-  #     "devise"
-  #   elsif current_user
-  #     if current_user.is_full_admin
-  #       "administracion"
-  #     elsif current_user.is_maestro || current_user.is_pariente || current_user.is_director
-  #       "institucion"
-  #     else
-  #       "permisos"
-  #     end
-  #   else
-  #     "application"
-  #   end
-  # end
+  #layout :layout_by_resource
 
   private
+
+  def layout_by_resource
+    return 'admin_home' if current_user.admin?
+
+    'home'  
+   end
   
   def current_cart
     cart = Cart.find_by(:id => session[:cart_id])
@@ -36,7 +24,10 @@ class ApplicationController < ActionController::Base
     end
 
     if session[:cart_id] == nil
-      @current_cart = Cart.create
+      @current_cart = Cart.new
+      @order = Order.create!(status: :pending)
+      @current_cart.order = @order
+      @current_cart.save!
       session[:cart_id] = @current_cart.id
     end
   end
@@ -44,8 +35,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name address phone date_of_birth gender])
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name address phone date_of_birth gender])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name role])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name role])
   end
 
   rescue_from CanCan::AccessDenied do |exception|

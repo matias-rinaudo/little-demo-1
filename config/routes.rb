@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root "home#index"
-  resources :products
-  resources :orders, only: [:index, :show, :new, :create]
+  devise_for :users
+  resources :products, only: [:index, :show]
+  resources :orders, only: [:index, :show, :edit, :update]
   resources :carts, only: [:show, :destroy]
   resources :line_items, only: [:show, :destroy, :create] do
     member do
@@ -9,5 +10,9 @@ Rails.application.routes.draw do
       post :reduce_quantity, as: "line_item_reduce"
     end
   end
-  devise_for :users
+
+  namespace :admin do
+    resources :products
+    resources :orders, only: [:index, :show]
+  end
 end

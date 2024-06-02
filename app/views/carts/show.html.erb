@@ -48,7 +48,7 @@
                 <p><%= number_to_currency(@current_cart.sub_total) %></p>
               </div>
               <div class="mt-6">
-                <%= link_to 'Checkout', new_order_path, class: 'flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700' %>
+                <%= link_to 'Checkout', edit_order_path(@current_cart.order), class: 'flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700' %>
               </div>
             </div>
           </div>

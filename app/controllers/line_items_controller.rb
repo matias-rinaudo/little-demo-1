@@ -3,18 +3,7 @@ class LineItemsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    _product = Product.find(params[:product_id])
-
-    if @current_cart.product_exist?(_product)
-      @line_item = @current_cart.line_items.find_by(:product_id => _product)
-      @line_item.add_quantity
-    else
-      @line_item = LineItem.new
-      @line_item.cart = @current_cart
-      @line_item.product = _product
-      @line_item.quantity = 1
-    end
-
+    @line_item = ::LineItems::Build.call(current_cart: @current_cart, product: Product.find(params[:product_id]))
     @line_item.save!
 
     redirect_to cart_path(@current_cart)
