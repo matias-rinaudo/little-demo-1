@@ -8,6 +8,7 @@ class Cart < ApplicationRecord
   end
 
   def sub_total
+    ##ESTO LO HICE ASI PORQUE PODRIAMOS SUMAR EN SUBTOTAL LAS COMISIONES, ENVIO, ETC
     total_items 
   end
 

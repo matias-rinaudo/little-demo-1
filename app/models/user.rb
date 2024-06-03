@@ -8,5 +8,5 @@ class User < ApplicationRecord
   validates :email, format: EMAIL_REGEXP
   validates :password, confirmation: true
 
-  enum role: { admin: 1, seller: 2, operator: 3}
+  enum role: { admin: 1 }
 end

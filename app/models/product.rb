@@ -9,4 +9,14 @@ class Product < ApplicationRecord
 
   scope :with_stock, -> {where('stock > 1')}
   scope :without_stock, -> {where('stock < 1')}
+
+  after_create :set_default_image
+
+  private
+
+  def set_default_image
+    return if self.files.attached?
+
+    self.files.attach(io: File.open("app/assets/images/product_default.png"), filename: "default_image")
+  end
 end
