@@ -10,9 +10,9 @@
   <% if @order.line_items.any? %>
     <h3 class="mb-2 text-xl font-medium leading-tight">Items:</h3>
     <ul class="w-full">
-      <% @order.line_items.group(:product).count.map do |product, quantity| %>
-        <li
-          class="w-full border-b-2 border-neutral-100 border-opacity-100 px-6 py-3  dark:border-white/10">
+      <% @order.line_items.group(:product_id).sum(:quantity).map do |product_id, quantity| %>
+        <li class="w-full border-b-2 border-neutral-100 border-opacity-100 px-6 py-3  dark:border-white/10">
+          <% product = Product.find(product_id) %>
           <%= "#{product.title} Cantidad: #{quantity}" %>
         </li>
       <% end %>
