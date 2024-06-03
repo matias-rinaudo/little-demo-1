@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+ruby version = 3.1.0
+rails version = 7.1.2
+bundler
+rails db:create db:migrate db:seed
 
-* Ruby version
+Cree productos en seeds, también un usuario de admin (username: admin, password: admin1234)
 
-* System dependencies
+vistas: Frontend ( localhost:3000/ )
+        Backoffice ( localhost:3000/admin )
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
