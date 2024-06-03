@@ -10,8 +10,8 @@ module Admin
       respond_to do |format|
         format.html
         format.pdf do
-          service_pdf = ::Orders::GeneratePdf.new(order: @order)
-          send_data(service_pdf.generate_pdf, filename: "#{@order.id}/#{@order.created_at}.pdf", type: 'application/pdf', :disposition => 'inline')
+          generate_pdf = ::Orders::GeneratePdf.new(order: @order)
+          send_data(generate_pdf.call, filename: "#{@order.id}/#{@order.created_at}.pdf", type: 'application/pdf', :disposition => 'inline')
         end
       end
     end

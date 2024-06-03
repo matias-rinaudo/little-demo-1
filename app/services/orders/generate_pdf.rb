@@ -8,7 +8,7 @@ module Orders
       @document_width = @pdf.bounds.width
     end
 
-    def generate_pdf
+    def call
       header
       details
       items

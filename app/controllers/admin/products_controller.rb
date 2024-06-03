@@ -25,7 +25,7 @@ module Admin
 
     def update
       if @product.update(product_params)
-        redirect_to admin_products_path, notice: 'Producto creado.'
+        redirect_to admin_products_path, notice: 'Producto actualizado.'
       else
         redirect_to new_admin_product_path, notice: @product.errors
       end
@@ -37,12 +37,13 @@ module Admin
     end
 
     private
-      def set_product
-        @product = Product.find(params[:id])
-      end
+    
+    def set_product
+      @product = Product.find(params[:id])
+    end
 
-      def product_params
-        params.require(:product).permit(:title, :price, :description, :stock, :files => [])
-      end
+    def product_params
+      params.require(:product).permit(:title, :price, :description, :stock, :files => [])
+    end
   end
 end
