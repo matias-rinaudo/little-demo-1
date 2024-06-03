@@ -1,0 +1,25 @@
+<%= simple_form_for product, class: 'max-w-sm mx-auto', url: admin_products_path, method: :post do |form| %>
+  <div class="mb-5">
+    <label class="block mb-2 text-sm font-medium text-gray-900 white:text-white">Titulo</label>
+    <%= form.text_field :title, class: 'block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 white:bg-gray-700 white:border-gray-600 white:placeholder-gray-400 white:text-white white:focus:ring-blue-500 white:focus:border-blue-500' %>
+  </div>
+  <div class="mb-5">
+    <label class="block mb-2 text-sm font-medium text-gray-900 white:text-white">Precio</label>
+    <%= form.text_field :price, class: 'block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 white:bg-gray-700 white:border-gray-600 white:placeholder-gray-400 white:text-white white:focus:ring-blue-500 white:focus:border-blue-500' %>
+  </div>
+  <div class="mb-5">
+    <label class="block mb-2 text-sm font-medium text-gray-900 white:text-white">Descripción</label>
+    <%= form.text_field :description, class: 'block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 white:bg-gray-700 white:border-gray-600 white:placeholder-gray-400 white:text-white white:focus:ring-blue-500 white:focus:border-blue-500' %>
+  </div>
+  <div class="mb-5">
+    <label class="block mb-2 text-sm font-medium text-gray-900 white:text-white">Stock</label>
+    <%= form.text_field :stock, class: 'block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 white:bg-gray-700 white:border-gray-600 white:placeholder-gray-400 white:text-white white:focus:ring-blue-500 white:focus:border-blue-500' %>
+  </div>
+
+  <div class="mb-5">
+    <label class="block mb-2 text-sm font-medium text-gray-900 white:text-white">Adjuntar imagenes</label>
+    <%= form.file_field :files, multiple: true%>
+  </div>
+
+  <%= form.submit 'Guardar', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full', style: 'width: 100%; text-align: center;' %>    
+<% end %>

@@ -1,0 +1,17 @@
+<div class="block max-w-[18rem] rounded-lg bg-white text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white" style="text-align: center;">
+  <div class="p-6">
+    <h5 class="mb-2 text-xl font-medium leading-tight"><%= @product.title %></h5>
+    <p class="text-base">
+      <%= number_to_currency(@product.price) %><br>
+      <%= "Stock: #{@product.stock}" %><br>
+    </p>
+    <% if @product.files.attached? %>
+      <h3 class="mb-2 text-xl font-medium leading-tight">Imagenes</h3>
+      <ul class="list-outside ...">
+        <% @product.files.each do |file| %>
+          <li><%= link_to "#{file.blob.filename.to_s}", url_for(file), target: :_blank %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>

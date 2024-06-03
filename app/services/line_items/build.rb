@@ -10,6 +10,7 @@ module LineItems
           line_item.cart = current_cart
           line_item.product = product
           line_item.quantity = 1
+          line_item.order = current_cart.order
         end
 
         line_item

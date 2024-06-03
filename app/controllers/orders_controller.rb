@@ -1,18 +1,16 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit]
-
-  def index
-    @orders = Order.all
-  end
-
-  def show;end
+  before_action :set_order, only: [:edit, :update]
 
   def edit;end
 
   def update
-    ::Orders::Finished
-
-    redirect_to root_path 
+    if @order.update(order_params.merge(total: @current_cart.total, status: :finished))
+      @current_cart.destroy
+      session[:cart_id] = nil
+      redirect_to root_path, notice: 'Compra efectuada.'
+    else
+      redirect_to edit_order_path(@order), notice: 'Revise los campos.'
+    end
   end
 
   private

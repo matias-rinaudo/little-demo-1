@@ -1,59 +1,50 @@
-<div class="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
-  <div class="fixed inset-0 overflow-hidden">
-    <div class="absolute inset-0 overflow-hidden">
-      <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-        <div class="pointer-events-auto w-screen max-w-md">
-          <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
-            <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
-              <div class="flex items-start justify-between">
-                <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Mi carrito</h2>
-              </div>
-              <div class="mt-8">
-                <div class="flow-root">
-                  <ul role="list" class="-my-6 divide-y divide-gray-200">
-                    <% @current_cart.line_items.map do |item| %>
-                      <li class="flex py-6">
-                        <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                          <img src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg" alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." class="h-full w-full object-cover object-center">
-                        </div>
-
-                        <div class="ml-4 flex flex-1 flex-col">
-                          <div>
-                            <div class="flex justify-between text-base font-medium text-gray-900">
-                              <h3>
-                                <a href=<%= product_path(item.product) %>><%= item.product.title %></a>
-                              </h3>
-                              <p class="ml-4"><%= number_to_currency(item.product.price) %></p>
-                            </div>
+<section class="py-24 relative">
+    <div class="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">
+        <div class="flex items-start flex-col gap-6 xl:flex-row ">
+            <div class="w-full max-w-sm md:max-w-3xl xl:max-w-sm flex items-start flex-col gap-8 max-xl:mx-auto">
+                <div class="p-6 border border-gray-200 rounded-3xl w-full group transition-all duration-500 hover:border-gray-400 ">
+                    <h2
+                        class="font-manrope font-bold text-3xl leading-10 text-black pb-6 border-b border-gray-200 ">
+                        Mi carrito
+                    </h2>
+                    <div class="data py-6 border-b border-gray-200">
+                          <div class="flex items-center justify-between gap-4 mb-5">
+                              <p class="font-normal text-lg leading-8 text-gray-400 transition-all duration-500 group-hover:text-gray-700">Total productos:</p>
+                              <p class="font-medium text-lg leading-8 text-gray-900"><%= number_to_currency(@current_cart.total_items) %></p>
                           </div>
-                          <div class="flex flex-1 items-end justify-between text-sm">
-                            <p class="text-gray-500">Cantidad: <%= item.quantity %></p>
-
-                            <div class="flex">
-                              <%= link_to 'Agregar', line_item_add_line_item_path(item), class: 'font-medium text-indigo-600 hover:text-indigo-500', data: { 'turbo-method' => :post } %>&nbsp;&nbsp;&nbsp;&nbsp;
-                              <%= link_to 'Eliminar', line_item_reduce_line_item_path(item), class: 'font-medium text-indigo-600 hover:text-indigo-500', data: { 'turbo-method' => :post } %>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                    <% end %>
-                  </ul>
+                        
+                    </div>
+                    <div class="total flex items-center justify-between pt-6">
+                      <p class="font-normal text-xl leading-8 text-black ">Total:</p>
+                      <h5 class="font-manrope font-bold text-2xl leading-9 text-indigo-600"><%= number_to_currency(@current_cart.total) %></h5>
+                    </div>
                 </div>
-              </div>
+                <%= link_to 'Continuar compra', edit_order_path(@current_cart.order), class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full', style: 'width: 100%; text-align: center;' %>
             </div>
 
-            <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
-              <div class="flex justify-between text-base font-medium text-gray-900">
-                <p>Subtotal</p>
-                <p><%= number_to_currency(@current_cart.sub_total) %></p>
-              </div>
-              <div class="mt-6">
-                <%= link_to 'Checkout', edit_order_path(@current_cart.order), class: 'flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700' %>
-              </div>
+            <div class="w-full max-w-sm md:max-w-3xl max-xl:mx-auto">
+                <div class="grid grid-cols-1 gap-6">
+                    <% @current_cart.line_items.map do |item| %>
+                      <div class="rounded-3xl p-6 bg-gray-100 border border-gray-100 flex flex-col md:flex-row md:items-center gap-5 transition-all duration-500 hover:border-gray-400">
+                          <div class="img-box ">
+                              <img src="https://pagedone.io/asset/uploads/1701167635.png" alt="Denim Jacket image" class="w-full md:max-w-[122px]">
+                          </div>
+                          <div class="grid grid-cols-1 md:grid-cols-2 w-full gap-3 md:gap-8">
+                              <div class="">
+                                <h2 class="font-medium text-xl leading-8 text-black mb-3"><%= item.product.title %></h2>
+                              </div>
+                              <div class="">
+                                <h2 class="font-medium text-xl leading-8 text-black mb-3">Cantidad: <%= item.quantity %></h2>
+                              </div>
+                              <div class="flex items-center justify-between gap-8">
+                                <h6 class="font-medium text-xl leading-8 text-indigo-600"><%= number_to_currency(item.product.price) %></h6>
+                              </div>
+                          </div>
+                      </div>
+                    <% end %>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
+</section>
+                                            

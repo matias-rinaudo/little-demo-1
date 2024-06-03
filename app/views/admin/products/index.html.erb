@@ -1,0 +1,20 @@
+<div class="relative overflow-x-auto">
+  <%= link_to 'Nuevo producto', new_admin_product_path %>
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="px-6 py-3">Titulo</th>
+        <th scope="col" class="px-6 py-3">Precio</th>
+        <th scope="col" class="px-6 py-3">Stock</th>
+        <th scope="col" class="px-6 py-3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.map do |product| %>
+        <%= render 'admin/products/products_table', product: product %>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <%= paginate @products %>
+</div>

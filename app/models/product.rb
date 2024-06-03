@@ -1,4 +1,7 @@
 class Product < ApplicationRecord
+  has_many :line_items
+  has_many_attached :files
+  
   validates :title, presence: true
   validates :price, presence: true,
                     numericality: { greater_than_or_equal_to: 0 }

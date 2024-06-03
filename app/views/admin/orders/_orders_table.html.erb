@@ -1,0 +1,18 @@
+<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+    <%= order.customer.full_name %>
+  </th>
+  <td class="px-6 py-4">
+    <%= order.email %>
+  </td>
+  <td class="px-6 py-4">
+    <%= number_to_currency(order.total) %>
+  </td>
+  <td class="px-6 py-4">
+    <%= order.created_at.strftime("%d/%m/%Y") %>
+  </td>
+  <td class="px-6 py-4">
+    <%= link_to 'Ver', admin_order_path(order) %>
+    <%= link_to 'Descargar PDF', admin_order_path(order, :format => 'pdf'), target: '_blank' %>
+  </td>
+</tr>

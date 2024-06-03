@@ -1,3 +1,12 @@
+admin = User.create!(
+  email: 'admin@admin.com',
+  first_name: 'Admin',
+  last_name: 'Admin',
+  role: :admin,
+  password: 'admin1234',
+  password_confirmation: 'admin1234'
+)
+
 Product.create!(
   title: 'Earthen Bottle',
   price: 4875,

@@ -1,18 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
-  before_action :authenticate_user!
+  before_action :authenticate_customer!
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :current_cart
-
-  #layout :layout_by_resource
+  before_action :current_cart, if: :authenticate_customer!
 
   private
-
-  def layout_by_resource
-    return 'admin_home' if current_user.admin?
-
-    'home'  
-   end
   
   def current_cart
     cart = Cart.find_by(:id => session[:cart_id])
@@ -25,7 +17,7 @@ class ApplicationController < ActionController::Base
 
     if session[:cart_id] == nil
       @current_cart = Cart.new
-      @order = Order.create!(status: :pending)
+      @order = Order.create!(status: :pending, customer: current_customer)
       @current_cart.order = @order
       @current_cart.save!
       session[:cart_id] = @current_cart.id
@@ -35,8 +27,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name role])
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name role])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name])
   end
 
   rescue_from CanCan::AccessDenied do |exception|

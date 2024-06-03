@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  root "home#index"
-  devise_for :users
+  devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup' }
+  devise_for :customers, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup' }
+
+  root 'home#index'
+
   resources :products, only: [:index, :show]
-  resources :orders, only: [:index, :show, :edit, :update]
+  resources :orders, only: [:edit, :update]
   resources :carts, only: [:show, :destroy]
   resources :line_items, only: [:show, :destroy, :create] do
     member do
@@ -12,6 +15,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    get '/', to: 'home#index'
     resources :products
     resources :orders, only: [:index, :show]
   end

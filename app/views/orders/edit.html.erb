@@ -1,1 +1,19 @@
-<%= render 'form', order: @order %>
+<section class="py-24 relative">
+  <div class="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">
+    <%= simple_form_for @order, class: 'max-w-sm mx-auto' do |form| %>
+      <div class="mb-5">
+        <label class="block mb-2 text-sm font-medium text-gray-900 white:text-white">Nombre</label>
+        <%= form.text_field :name, class: 'block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 white:bg-gray-700 white:border-gray-600 white:placeholder-gray-400 white:text-white white:focus:ring-blue-500 white:focus:border-blue-500', value: @order.customer.full_name %>
+      </div>
+      <div class="mb-5">
+        <label class="block mb-2 text-sm font-medium text-gray-900 white:text-white">Email</label>
+        <%= form.text_field :email, class: 'block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 white:bg-gray-700 white:border-gray-600 white:placeholder-gray-400 white:text-white white:focus:ring-blue-500 white:focus:border-blue-500', value: @order.customer.email %>
+      </div>
+            <div class="mb-5">
+        <label class="block mb-2 text-sm font-medium text-gray-900 white:text-white">Dirección</label>
+        <%= form.text_field :address, class: 'block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 white:bg-gray-700 white:border-gray-600 white:placeholder-gray-400 white:text-white white:focus:ring-blue-500 white:focus:border-blue-500' %>
+      </div>
+      <%= form.submit 'Finalizar compra', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full', style: 'width: 100%; text-align: center;' %>    
+    <% end %>
+  </div>
+</section>
